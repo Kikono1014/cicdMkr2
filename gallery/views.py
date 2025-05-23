@@ -8,3 +8,7 @@ def gallery_view(request):
     thirty_days_ago = today - timedelta(days=30)
     images = Image.objects.filter(created_date__gte=thirty_days_ago).order_by('-created_date')
     return render(request, 'gallery.html', {'images': images})
+
+def image_detail(request, pk):
+    image = get_object_or_404(Image, pk=pk)
+    return render(request, 'image_detail.html', {'image': image})
